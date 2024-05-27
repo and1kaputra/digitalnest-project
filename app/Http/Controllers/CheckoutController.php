@@ -38,7 +38,7 @@ class CheckoutController extends Controller
          
         $data = [
             'total_price' => $product->price,
-            'is_paid' => false,
+            'is_paid' => "pending",
             'buyer_id' => Auth::id(),
             'creator_id' => $product->creator_id,
             'product_id' => $product->id,

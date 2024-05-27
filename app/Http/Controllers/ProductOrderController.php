@@ -93,6 +93,7 @@ class ProductOrderController extends Controller
     public function edit(ProductOrder $productOrder)
     {
         //
+
     }
 
     /**
@@ -101,9 +102,24 @@ class ProductOrderController extends Controller
     public function update(Request $request, ProductOrder $productOrder)
     {
         //
-        $productOrder->update(['is_paid' => true]);
+        $productOrder->update(['is_paid' => "success"]);
         return redirect()->back()->with('message', 'Order success updated');
     }
+
+    public function declined(Request $request, ProductOrder $productOrder) {
+        $productOrder->update(['is_paid' => "declined"]);
+        return redirect()->back()->with('message', 'Order declined');
+    }
+    // public function rating(Request $request) {
+    //     $validated = $request->validate([
+    //         "stars" => 'required',
+    //         "review" => 
+    //     ]);
+
+    //     dd($validated);
+
+    //     return redirect()->name('product_orders.transactions');
+    // }
 
     /**
      * Remove the specified resource from storage.

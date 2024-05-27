@@ -67,7 +67,7 @@
         </div>
     </section>
 
-    <x-testimonials/>
+    <x-testimonials :review="$review_product"/>
 
     <x-tools/>
 

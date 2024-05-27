@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductOrder;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -88,6 +89,37 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+    }
+
+    public function rating(Request $request, Product $product) {
+        $user = Auth::user();
+        $validated = $request->validate([
+            "stars" => 'required',
+            "review" => "required"
+        ]);
+
+        DB::beginTransaction();
+
+        try{
+            $newProduct = Review::create([
+                "reviewer_id" => $user->id,
+                "product_id" => $product->id,
+                "stars" => $validated["stars"],
+                "review" => $validated["review"]
+            ]);
+            DB::commit();
+
+            return redirect()->route('front.details', $product->slug);
+        }
+        catch(\Exception $e){
+            DB::rollback();
+
+            $error = ValidationException::withMessages([
+                'system_error' => ['System error!' . $e->getMessage()],
+            ]);
+
+            throw $error;
+        }
     }
 
     /**

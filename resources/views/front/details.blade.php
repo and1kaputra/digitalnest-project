@@ -113,26 +113,26 @@
                                         <div class="w-4 h-4 flex shrink-0">
                                             <img src="{{asset('/images/icons/check.svg')}}" alt="icon">
                                         </div>
-                                        <p class="text-digitalnest-grey">High-Performance Code</p>
+                                        <p class="text-digitalnest-grey">Great deals price</p>
                                     </div>
                                     <div class="flex items-center gap-[10px]">
                                         <div class="w-4 h-4 flex shrink-0">
                                             <img src="{{asset('/images/icons/check.svg')}}" alt="icon">
                                         </div>
-                                        <p class="text-digitalnest-grey">Customizable Themes</p>
+                                        <p class="text-digitalnest-grey">Attractive Themes</p>
                                     </div>
                                     <div class="flex items-center gap-[10px]">
                                         <div class="w-4 h-4 flex shrink-0">
                                             <img src="{{asset('/images/icons/check.svg')}}" alt="icon">
                                         </div>
-                                        <p class="text-digitalnest-grey">Responsive Design</p>
+                                        <p class="text-digitalnest-grey">Get the best value product</p>
                                     </div>
-                                    <div class="flex items-center gap-[10px]">
+                                    {{-- <div class="flex items-center gap-[10px]">
                                         <div class="w-4 h-4 flex shrink-0">
                                             <img src="{{asset('/images/icons/check.svg')}}" alt="icon">
                                         </div>
                                         <p class="text-digitalnest-grey">Comprehensive Documentation</p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <a href="{{route('front.checkout', $product->slug)}}"
@@ -153,9 +153,9 @@
                                     </p>
                                 </div>
                             </div>
-                            <a href="">
+                            {{-- <a href="">
                                 <img src="{{asset('/images/icons/arrow-right.svg')}}" alt="icon">
-                            </a>
+                            </a> --}}
                         </div>
                         <p class="text-sm leading-[24px] text-digitalnest-grey">A young UI/UX Designer from Indonesia.
                             Specialized in mobile apps designs & loves creating UI Kit 🇮🇩</p>
@@ -196,7 +196,7 @@
         </div>
     </section>
 
-    <x-testimonials/>
+    <x-testimonials :review="$review_product"/>
 
     <x-footer/>
 

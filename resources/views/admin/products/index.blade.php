@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div>
-                        <p class="text-indigo-950 font-bold text-xl">Rp {{$product->price}}</p>
+                        <p class="text-indigo-950 font-bold text-xl">Rp {{number_format($product->price)}}</p>
                     </div>
                     <div class="flex flex-row gap-x-3">
                         <a href="{{route('admin.products.edit', $product)}}" class="rounded-full font-bold py-3 px-5 bg-indigo-500 text-white">

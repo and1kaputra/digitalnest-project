@@ -136,13 +136,14 @@
                     </div>
                     <div class="product-title flex flex-col gap-[30px]">
                         <div class="flex flex-col gap-3">
-                            <p class="font-semibold">{{$product->name}}
+                            <p class="font-semibold truncate">{{$product->name}}
                             </p>
                             <p
                                 class="bg-[#2A2A2A] font-semibold text-xs text-digitalnest-grey rounded-[4px] p-[4px_6px] w-fit">
                                 {{$product->category->name}}</p>
+                            
                         </div>
-                        <div class="flex justify-between items-center">
+                        <div class="flex flex-col justify-between items-start gap-y-4">
                             <div class="flex items-center gap-2">
                                 <div class="w-8 h-8 rounded-full shrink-0 overflow-hidden">
                                     <img src="{{Storage::url($product->creator->avatar)}}" alt="logo">
@@ -150,7 +151,7 @@
                                 <p class="font-semibold text-digitalnest-grey">{{$product->creator->name}}</p>
                             </div>
                             <p
-                                class="font-semibold text-4xl bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">Rp {{number_format($product->price)}}</p>
+                            class="font-semibold text-4xl bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">Rp {{number_format($product->price)}}</p>
                         </div>
                     </div>
                 </div>
@@ -164,9 +165,9 @@
                 <div class="w-full flex flex-col gap-4">
                     <p class="font-semibold text-xl">Transfer to:</p>
                     <div class="flex flex-col gap-3">
-                        <div class="flex gap-3">
+                        <div class="flex flex-col gap-3">
                             <div
-                                class="flex items-center gap-1 p-[12px_20px] pl-4 w-[163px] justify-between rounded-lg bg-[#181818] hover:ring-[1px] hover:ring-[#A0A0A0] focus:ring-[1px] focus:ring-[#A0A0A0] transition-all duration-300">
+                                class="flex items-center gap-1 p-[12px_20px] pl-4 w-full justify-between rounded-lg bg-[#181818] hover:ring-[1px] hover:ring-[#A0A0A0] focus:ring-[1px] focus:ring-[#A0A0A0] transition-all duration-300">
                                 <div class="flex flex-col">
                                     <label for="bank" class="text-xs text-digitalnest-grey pl-1">Bank Name</label>
                                     <select name="bank" id="bank"
@@ -181,10 +182,10 @@
                                 </div>
                             </div>
                             <div
-                                class="flex items-center gap-1 p-[12px_20px] pl-4 w-[215px] justify-between rounded-lg bg-[#181818] hover:ring-[1px] hover:ring-[#A0A0A0] focus:ring-[1px] focus:ring-[#A0A0A0] transition-all duration-300">
+                                class="flex items-center gap-1 p-[12px_20px] pl-4 w-full justify-between rounded-lg bg-[#181818] hover:ring-[1px] hover:ring-[#A0A0A0] focus:ring-[1px] focus:ring-[#A0A0A0] transition-all duration-300">
                                 <div class="flex flex-col w-full">
                                     <label for="name" class="text-xs text-digitalnest-grey pl-1">Account Name</label>
-                                    <div class="flex mt-1 items-center max-w-[149px]">
+                                    <div class="flex mt-1 items-center ">
                                         <input disabled type="text" name="name" value="{{$product->creator->bank_account}}" id="name"
                                             class="font-semibold bg-transparent appearance-none autofull-no-bg outline-none px-1 placeholder:text-[#595959] placeholder:font-normal placeholder:text-sm w-full"
                                             placeholder="Type here" required></input>

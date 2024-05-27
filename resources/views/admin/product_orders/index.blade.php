@@ -38,16 +38,21 @@
                             <p class="text-indigo-950 font-bold text-xl">Rp {{number_format($order->total_price)}}</p>
                         </div>
                         <div>
-                            <p class="text-slate-500 text-sm">Status:</p>
-                            @if($order->is_paid)
-                                <span class="py-1 px-3 rounded-full bg-green-500 text-white font-bold text-sm">
-                                    SUCCESS
-                                </span>
-                            @else
-                                <span class="py-1 px-3 rounded-full bg-orange-500 text-white font-bold text-sm">
-                                    PENDING
-                                </span>
-                            @endif
+                            <p class="text-slate-500 text-sm mb-2">Status:</p>
+                            @if($order->is_paid == "success")
+                            <span class="py-2 px-5 rounded-full bg-green-500 text-white font-bold text-sm">
+                                PAID
+                            </span>
+                        @elseif($order->is_paid == "declined")
+                        <span class="py-2 px-5 rounded-full bg-red-500 text-white font-bold text-sm">
+                            Declined
+                        </span>
+                        @else
+                            <span class="py-2 px-5 rounded-full bg-orange-500 text-white font-bold text-sm">
+                                PENDING
+                            </span>
+                        @endif
+
                         </div>
                         <div class="flex flex-row gap-x-3">
                             <a href="{{route('admin.product_orders.show', $order)}}" class="rounded-full font-bold py-3 px-5 bg-indigo-500 text-white">

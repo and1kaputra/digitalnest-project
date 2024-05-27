@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('buyer_id');
             $table->unsignedBigInteger('total_price');
-            $table->boolean('is_paid');
+            $table->string('is_paid')->default('pending');
             $table->string('proof');
             $table->softDeletes();
             $table->timestamps();

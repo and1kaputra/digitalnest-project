@@ -35,13 +35,17 @@
                         </div>
                         <div>
                             <p class="text-slate-500 text-sm">Total Price:</p>
-                            <p class="text-indigo-950 font-bold text-xl">Rp {{$transaction->product->price}}</p>
+                            <p class="text-indigo-950 font-bold text-xl">Rp {{number_format($transaction->product->price)}}</p>
                         </div>
                         <div>
                             <p class="text-slate-500 text-sm">Status:</p>
-                            @if($transaction->is_paid)
+                            @if($transaction->is_paid == "success")
                                 <span class="py-1 px-3 rounded-full bg-green-500 text-white font-bold text-sm">
                                     SUCCESS
+                                </span>
+                            @elseif($transaction->is_paid == "declined")
+                                <span class="py-1 px-3 rounded-full bg-red-500 text-white font-bold text-sm">
+                                    Declined
                                 </span>
                             @else
                                 <span class="py-1 px-3 rounded-full bg-orange-500 text-white font-bold text-sm">
