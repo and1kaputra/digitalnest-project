@@ -85,12 +85,6 @@
                         </div>
                     </li>
                     <li class="text-digitalnest-grey hover:text-digitalnest-light-grey transition-all duration-300">
-                        <a href="">Stories</a>
-                    </li>
-                    <li class="text-digitalnest-grey hover:text-digitalnest-light-grey transition-all duration-300">
-                        <a href="">Benefits</a>
-                    </li>
-                    <li class="text-digitalnest-grey hover:text-digitalnest-light-grey transition-all duration-300">
                         <a href="">About</a>
                     </li>
                 </ul>

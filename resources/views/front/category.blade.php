@@ -60,7 +60,7 @@
             </div>
         @empty
             <p> 
-                Belum ada produk tersedia.
+                No products available yet.
             </p>
         @endforelse
 

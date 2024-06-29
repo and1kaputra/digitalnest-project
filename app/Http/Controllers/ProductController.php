@@ -101,6 +101,16 @@ class ProductController extends Controller
         DB::beginTransaction();
 
         try{
+
+            $exitsReveiew = Review::where('reviewer_id', $user->id)
+            ->where('product_id', $product->id)
+            ->first();
+    
+            if ($exitsReveiew) {
+                session()->flash('errorReview', 'You have filled out the review');
+                return redirect()->back();
+            }
+
             $newProduct = Review::create([
                 "reviewer_id" => $user->id,
                 "product_id" => $product->id,

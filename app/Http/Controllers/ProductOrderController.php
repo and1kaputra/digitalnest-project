@@ -29,7 +29,6 @@ class ProductOrderController extends Controller
     }
 
     public function transactions_details(ProductOrder $productOrder){
-        $my_transactions = ProductOrder::where('buyer_id', Auth::id())->get();
         return view('admin.product_orders.transaction_details', [
             'order' => $productOrder
         ]);
@@ -39,12 +38,14 @@ class ProductOrderController extends Controller
         $user_id = Auth::id();
         $product_id = $productOrder->product_id;
 
-        $paidTransactionExist = ProductOrder::where('buyer_id', $user_id)
+        $paidTransactionExists = ProductOrder::where("buyer_id", $user_id)
         ->where('product_id', $product_id)
-        ->where('is_paid',1)
+        ->where('is_paid', "success")
         ->first();
 
-        if(!$paidTransactionExist){
+        
+
+        if(!$paidTransactionExists){
             session()->flash('error', 'you must purchase before download');
             return redirect()->back();
         }

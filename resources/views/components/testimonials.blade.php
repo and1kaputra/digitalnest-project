@@ -47,7 +47,7 @@
             </div>
         </div>
             @empty
-            <p>Data Kosong</p>
+            <p>Empty Review</p>
             @endforelse
             
             {{-- <div

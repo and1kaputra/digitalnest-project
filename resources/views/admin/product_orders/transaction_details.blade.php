@@ -20,6 +20,10 @@
                         </ul>
                     </div>
                 @endif
+
+                @if(Session::has('errorReview'))
+                    <p class="py-5 bg-red-500 text-white font-bold">{{ Session::get('errorReview') }}</p>
+                @endif
                 <div class="item-product flex flex-col gap-y-10">
                     <img src="{{Storage::url($order->product->cover)}}" class="h-auto w-[300px]" alt="">
                     <div>

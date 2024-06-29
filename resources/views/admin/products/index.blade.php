@@ -54,7 +54,7 @@
                     </div>
                 </div>
             @empty 
-                <p>Belum ada produk tersedia</p>
+                <p>No products available yet</p>
             @endforelse
             </div>
         </div>
