@@ -17,7 +17,7 @@
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
-                @if (Auth::user()->role == "admin")
+                @if (Auth::user()->role == "user")
 
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('creator.dashboard')" :active="request()->routeIs('creator.dashboard')">
@@ -44,7 +44,7 @@
                     </div>
                 @else
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('superadmin.categories')" :active="request()->routeIs('home')">
+                        <x-nav-link :href="route('superadmin.categories.index')" :active="request()->routeIs('home')">
                             {{ __('Categories') }}
                         </x-nav-link>
                     </div>
