@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontController;
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
         Route::get('/superadmin/dashboard', [FrontController::class, 'index'])->name('superadmin.dashboard');
+        Route::resource("categories", CategoryController::class);
     });
 
     Route::prefix('creator')->name('creator.')->group(function(){
