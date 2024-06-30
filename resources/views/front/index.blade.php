@@ -55,7 +55,7 @@
                 <div
                     class="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
                     <div class="w-[58px] h-[58px] flex shrink-0 flex items-center justify-center">
-                        <img src="{{asset($category->icon)}}" alt="icon">
+                        <img src="{{ Storage::url($category->icon) }}" alt="icon">
                     </div>
                     <div class="px-[6px] flex flex-col text-left">
                         <p class="font-bold text-sm">{{$category->name}}</p>
