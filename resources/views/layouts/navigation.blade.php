@@ -17,30 +17,39 @@
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
+                @if (Auth::user()->role == "admin")
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('creator.dashboard')" :active="request()->routeIs('creator.dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('creator.dashboard')" :active="request()->routeIs('creator.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('creator.products.index')" :active="request()->routeIs('creator.products.index')">
-                        {{ __('My Products') }}
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('creator.products.index')" :active="request()->routeIs('creator.products.index')">
+                            {{ __('My Products') }}
+                        </x-nav-link>
+                    </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('creator.product_orders.index')" :active="request()->routeIs('creator.product_orders.index')">
-                        {{ __('My Orders') }}
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('creator.product_orders.index')" :active="request()->routeIs('creator.product_orders.index')">
+                            {{ __('My Orders') }}
+                        </x-nav-link>
+                    </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('creator.product_orders.transactions')" :active="request()->routeIs('creator.product_orders.transactions')">
-                        {{ __('My Transaction') }}
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('creator.product_orders.transactions')" :active="request()->routeIs('creator.product_orders.transactions')">
+                            {{ __('My Transaction') }}
+                        </x-nav-link>
+                    </div>
+                @else
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('superadmin.categories')" :active="request()->routeIs('home')">
+                            {{ __('Categories') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
             </div>
 
             <!-- S  ettings Dropdown -->
