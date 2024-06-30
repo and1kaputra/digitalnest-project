@@ -38,25 +38,27 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
         Route::prefix('superadmin')->name('superadmin.')->group(function(){
-            Route::get('/dashboard', [FrontController::class, 'index'])->name('superadmin.dashboard');
             Route::resource("categories", CategoryController::class);
         });
     });
 
-    Route::prefix('creator')->name('creator.')->group(function(){
-        Route::resource('products', ProductController::class);
-        Route::resource('product_orders', ProductOrderController::class);
+    Route::middleware('role:user')->group(function () {
+        Route::prefix('creator')->name('creator.')->group(function(){
+            Route::resource('products', ProductController::class);
+            Route::resource('product_orders', ProductOrderController::class);
 
-        Route::get('/transactions', [ProductOrderController::class, 'transactions'])->name('product_orders.transactions');
-        Route::get('/transactions/details/{productOrder}', [ProductOrderController::class, 'transactions_details'])->name('product_orders.transactions.details');
+            Route::get('/transactions', [ProductOrderController::class, 'transactions'])->name('product_orders.transactions');
+            Route::get('/transactions/details/{productOrder}', [ProductOrderController::class, 'transactions_details'])->name('product_orders.transactions.details');
 
-        Route::get('/download/file/{productOrder}', [ProductOrderController::class, 'download_file'])->name('product_orders.download')->middleware('throttle:1,1');
+            Route::get('/download/file/{productOrder}', [ProductOrderController::class, 'download_file'])->name('product_orders.download')->middleware('throttle:1,1');
 
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::put('/declined/{productOrder}', [ProductOrderController::class, "declined"])->name('product_orders.declined');
-        Route::post('/rating/{product}', [ProductController::class, "rating"])->name('review.rating');
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+            Route::put('/declined/{productOrder}', [ProductOrderController::class, "declined"])->name('product_orders.declined');
+            Route::post('/rating/{product}', [ProductController::class, "rating"])->name('review.rating');
 
+        });
     });
+
 });
 
 require __DIR__.'/auth.php';
