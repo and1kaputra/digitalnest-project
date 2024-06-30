@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         $role = $request->user()->role;
         switch ($role) {
             case 'admin':
-                return redirect(route('superadmin.dashboard'));
+                return redirect(route('superadmin.categories.index'));
                 break;
             case 'user':
                 return redirect(route('creator.dashboard'));
