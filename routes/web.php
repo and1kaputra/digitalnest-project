@@ -37,8 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout/store/{product:slug}', [CheckoutController::class, 'store'])->name('front.checkout.store');
 
     Route::middleware('role:admin')->group(function () {
-        Route::get('/superadmin/dashboard', [FrontController::class, 'index'])->name('superadmin.dashboard');
-        Route::resource("categories", CategoryController::class);
+        Route::prefix('superadmin')->name('creator.')->group(function(){
+            Route::get('/dashboard', [FrontController::class, 'index'])->name('superadmin.dashboard');
+            Route::resource("categories", CategoryController::class);
+        });
     });
 
     Route::prefix('creator')->name('creator.')->group(function(){
