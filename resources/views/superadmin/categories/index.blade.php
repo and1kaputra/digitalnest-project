@@ -1,19 +1,32 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Manage Categories') }}
-            </h2>
-            <a href="{{ route("superadmin.categories.create") }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                Add New
-            </a>
-        </div>
+
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Categories') }}
+        </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
 
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li class="py-5 bg-red-500 text-white font-bold">
+                                {{$error}}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <div class="flex flex-row justify-between items-center mb-5">
+                <h3 class="text-indigo-950 font-bold text-2xl">Categories</h3>
+                <a href="{{ route("superadmin.categories.create") }}" class="rounded-full w-fit py-3 px-5 bg-indigo-500 text-white">
+                    Add New Category
+                </a>
+            </div>
                 @forelse ($categories as $category)
                 <div class="item-card flex flex-row justify-between items-center">
                     <div class="flex flex-row items-center gap-x-3">
