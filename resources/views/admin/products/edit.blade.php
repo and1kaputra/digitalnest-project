@@ -16,12 +16,12 @@
                                 <li class="py-5 bg-red-500 text-white font-bold">
                                     {{$error}}
                                 </li>
-                            @endforeach    
+                            @endforeach
                         </ul>
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('admin.products.update', $product) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('creator.products.update', $product) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <h1 class="text-indigo-950 text-3xl font-bold">Edit Product</h1>
@@ -41,7 +41,7 @@
                         <x-text-input id="path_file" class="block mt-1 w-full" type="file" name="path_file" />
                         <x-input-error :messages="$errors->get('path_file')" class="mt-2" />
                     </div>
-            
+
                     <!-- Name -->
                     <div class="mt-4">
                         <x-input-label for="name" :value="__('Name')" />
@@ -54,7 +54,7 @@
                         <x-text-input value="{{$product->price}}" id="price" class="block mt-1 w-full" type="number" name="price" required autofocus autocomplete="price" />
                         <x-input-error :messages="$errors->get('price')" class="mt-2" />
                     </div>
-                    
+
                     <div class="mt-4">
                         <x-input-label for="category" :value="__('category')" />
                         <select name="category_id" id="category" class="w-full py-3 pl-5 border">
@@ -73,9 +73,9 @@
                         <textarea name="about" id="about" class="w-full py-3 pl-5 border">{{$product->about}}"</textarea>
                         <x-input-error :messages="$errors->get('category')" class="mt-2" />
                     </div>
-            
+
                     <div class="flex items-center justify-end mt-4">
-            
+
                         <x-primary-button class="ms-4">
                             {{ __('Update Product') }}
                         </x-primary-button>

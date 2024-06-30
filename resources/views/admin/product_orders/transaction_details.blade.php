@@ -16,7 +16,7 @@
                                 <li class="py-5 bg-red-500 text-white font-bold">
                                     {{$error}}
                                 </li>
-                            @endforeach    
+                            @endforeach
                         </ul>
                     </div>
                 @endif
@@ -51,16 +51,16 @@
                     <img src="{{Storage::url($order->proof)}}" class="h-auto w-[300px]" alt="">
                     <div class="flex flex-row gap-x-3">
                         @if($order->is_paid == "success")
-                            <a href="{{route('admin.product_orders.download', $order)}}" class="py-3 px-5 bg-indigo-500 text-white rounded-xl">
+                            <a href="{{route('creator.product_orders.download', $order)}}" class="py-3 px-5 bg-indigo-500 text-white rounded-xl">
                                 Download Product
                             </a>
-                            
+
                                                 <button type="submit" class="py-3 px-5 bg-indigo-500 text-white w-fit rounded-xl" onclick="openModal()">
                                                     Rating
                                                 </button>
                         @endif
                     </div>
-                  
+
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
                 <h2 class="text-sm text-slate-500 font-bold mb-2">Rate this product</h2>
                 <i  class='bx  bx-x' class="text-black"> </i>
             </div>
-            <form method="post" action="{{route('admin.review.rating', $order->product)}}">
+            <form method="post" action="{{route('creator.review.rating', $order->product)}}">
                 @csrf
                 <div class="flex justify-center">
                     <div class="rating">
@@ -90,7 +90,7 @@
                           <input type="radio" name="stars" value="3" id="stars"/>
                           <span class="icon">★</span>
                           <span class="icon">★</span>
-                          <span class="icon">★</span>   
+                          <span class="icon">★</span>
                         </label>
                         <label>
                           <input type="radio" name="stars" value="4" id="stars"/>
@@ -107,7 +107,7 @@
                           <span class="icon">★</span>
                           <span class="icon">★</span>
                         </label>
-                    </div>  
+                    </div>
                 </div>
                 <div class="mt-4">
                     <x-input-label for="review" :value="__('Review')" />
@@ -123,16 +123,16 @@
     </div>
     @push('after-script')
     <script>
-        
+
                     var modal = document.getElementById('myModal');
-                
+
                 // Get the close button
-                
+
                 // Function to open the modal
                 function openModal() {
                     modal.style.display = 'block';
                 }
-                
+
                 // Function to close the modal
                 function closeModal() {
                     modal.style.display = 'none';
@@ -148,9 +148,8 @@
                 console.log('check');
             }
         });
-        
+
         }
         </script>
     @endpush
 </x-app-layout>
-    

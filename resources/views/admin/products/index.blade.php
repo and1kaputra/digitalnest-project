@@ -16,14 +16,14 @@
                                 <li class="py-5 bg-red-500 text-white font-bold">
                                     {{$error}}
                                 </li>
-                            @endforeach    
+                            @endforeach
                         </ul>
                     </div>
                 @endif
 
                 <div class="flex flex-row justify-between items-center mb-5">
                     <h3 class="text-indigo-950 font-bold text-2xl">My Products</h3>
-                    <a href="{{route('admin.products.create')}}" class="rounded-full w-fit py-3 px-5 bg-indigo-500 text-white">
+                    <a href="{{route('creator.products.create')}}" class="rounded-full w-fit py-3 px-5 bg-indigo-500 text-white">
                         Add New Product
                     </a>
                 </div>
@@ -40,11 +40,11 @@
                         <p class="text-indigo-950 font-bold text-xl">Rp {{number_format($product->price)}}</p>
                     </div>
                     <div class="flex flex-row gap-x-3">
-                        <a href="{{route('admin.products.edit', $product)}}" class="rounded-full font-bold py-3 px-5 bg-indigo-500 text-white">
+                        <a href="{{route('creator.products.edit', $product)}}" class="rounded-full font-bold py-3 px-5 bg-indigo-500 text-white">
                             Edit
                         </a>
 
-                        <form action="{{route('admin.products.destroy', $product)}}" method="POST">
+                        <form action="{{route('creator.products.destroy', $product)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="rounded-full py-3 px-5 bg-red-500 text-white">
@@ -53,7 +53,7 @@
                         </form>
                     </div>
                 </div>
-            @empty 
+            @empty
                 <p>No products available yet</p>
             @endforelse
             </div>

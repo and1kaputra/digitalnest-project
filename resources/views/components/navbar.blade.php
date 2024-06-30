@@ -95,7 +95,7 @@
                 @endguest
 
                 @auth
-                 <a href="{{route('admin.dashboard')}}"
+                 <a href="{{route('creator.dashboard')}}"
                     class="p-[8px_16px] w-fit h-fit rounded-[12px] text-digitalnest-grey border border-digitalnest-dark-grey
                     hover:bg-[#2A2A2A] hover:text-white transition-all duration-300">My Dashboard</a>
                 @endauth

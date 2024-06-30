@@ -16,7 +16,7 @@
                                 <li class="py-5 bg-red-500 text-white font-bold">
                                     {{$error}}
                                 </li>
-                            @endforeach    
+                            @endforeach
                         </ul>
                     </div>
                 @endif
@@ -45,20 +45,20 @@
                         </span>
                     @endif
                     </div>
-                    
+
                     <img src="{{Storage::url($order->proof)}}" class="h-auto w-[300px]" alt="">
                     @if($order->is_paid == "success" || $order->is_paid == "declined"  )
-                    
-                    @else 
+
+                    @else
                         <div class="flex flex-row gap-x-3">
-                        <form action="{{route('admin.product_orders.update', $order)}}" method="POST">
+                        <form action="{{route('creator.product_orders.update', $order)}}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <button type="submit" class="py-3 px-5 bg-indigo-500 text-white">
                                     Approve Now
                                 </button>
                             </form>
-                        <form action="{{route('admin.product_orders.declined', $order)}}" method="POST">
+                        <form action="{{route('creator.product_orders.declined', $order)}}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <button type="submit" class="py-3 px-5 bg-red-500 text-white">

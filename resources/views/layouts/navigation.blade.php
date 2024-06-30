@@ -6,7 +6,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('admin.dashboard') }}">
+                    <a href="{{ route('creator.dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -19,25 +19,25 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    <x-nav-link :href="route('creator.dashboard')" :active="request()->routeIs('creator.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')">
+                    <x-nav-link :href="route('creator.products.index')" :active="request()->routeIs('creator.products.index')">
                         {{ __('My Products') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.product_orders.index')" :active="request()->routeIs('admin.product_orders.index')">
+                    <x-nav-link :href="route('creator.product_orders.index')" :active="request()->routeIs('creator.product_orders.index')">
                         {{ __('My Orders') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.product_orders.transactions')" :active="request()->routeIs('admin.product_orders.transactions')">
+                    <x-nav-link :href="route('creator.product_orders.transactions')" :active="request()->routeIs('creator.product_orders.transactions')">
                         {{ __('My Transaction') }}
                     </x-nav-link>
                 </div>
@@ -94,7 +94,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('creator.dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>

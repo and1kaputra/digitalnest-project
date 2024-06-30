@@ -35,7 +35,7 @@ class CheckoutController extends Controller
             $proofPath = $request->file('proof')->store('payment_proofs', 'public');
             $validated['proof'] = $proofPath;
         }
-         
+
         $data = [
             'total_price' => $product->price,
             'is_paid' => "pending",
@@ -53,7 +53,7 @@ class CheckoutController extends Controller
 
             DB::commit();
 
-            return redirect()->route('admin.product_orders.transactions')->with('success','Success checkout successfuly!');
+            return redirect()->route('creator.product_orders.transactions')->with('success','Success checkout successfuly!');
         }
         catch(\Exception $e){
             DB::rollback();

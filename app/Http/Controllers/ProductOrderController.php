@@ -17,19 +17,19 @@ class ProductOrderController extends Controller
     {
         //
         $my_orders = ProductOrder::where('creator_id', Auth::id())->get();
-        return view('admin.product_orders.index', [
+        return view('creator.product_orders.index', [
             'my_orders' => $my_orders
         ]);
     }
     public function transactions(){
         $my_transactions = ProductOrder::where('buyer_id', Auth::id())->get();
-        return view('admin.product_orders.transactions', [
+        return view('creator.product_orders.transactions', [
             'my_transactions' => $my_transactions
         ]);
     }
 
     public function transactions_details(ProductOrder $productOrder){
-        return view('admin.product_orders.transaction_details', [
+        return view('creator.product_orders.transaction_details', [
             'order' => $productOrder
         ]);
     }
@@ -43,7 +43,7 @@ class ProductOrderController extends Controller
         ->where('is_paid', "success")
         ->first();
 
-        
+
 
         if(!$paidTransactionExists){
             session()->flash('error', 'you must purchase before download');
@@ -83,7 +83,7 @@ class ProductOrderController extends Controller
     public function show(ProductOrder $productOrder)
     {
         //
-        return view('admin.product_orders.details', [
+        return view('creator.product_orders.details', [
             'order' => $productOrder
         ]);
     }
@@ -114,7 +114,7 @@ class ProductOrderController extends Controller
     // public function rating(Request $request) {
     //     $validated = $request->validate([
     //         "stars" => 'required',
-    //         "review" => 
+    //         "review" =>
     //     ]);
 
     //     dd($validated);

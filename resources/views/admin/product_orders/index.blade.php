@@ -16,7 +16,7 @@
                                 <li class="py-5 bg-red-500 text-white font-bold">
                                     {{$error}}
                                 </li>
-                            @endforeach    
+                            @endforeach
                         </ul>
                     </div>
                 @endif
@@ -55,13 +55,13 @@
 
                         </div>
                         <div class="flex flex-row gap-x-3">
-                            <a href="{{route('admin.product_orders.show', $order)}}" class="rounded-full font-bold py-3 px-5 bg-indigo-500 text-white">
+                            <a href="{{route('creator.product_orders.show', $order)}}" class="rounded-full font-bold py-3 px-5 bg-indigo-500 text-white">
                                 View Details
                             </a>
 
                         </div>
                     </div>
-                @empty 
+                @empty
                 <p>Belum ada pembeli produk tersedia</p>
                 @endforelse
             </div>

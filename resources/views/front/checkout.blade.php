@@ -99,7 +99,7 @@
                 @endguest
 
                 @auth
-                 <a href="{{route('admin.dashboard')}}"
+                 <a href="{{route('creator.dashboard')}}"
                     class="p-[8px_16px] w-fit h-fit rounded-[12px] text-digitalnest-grey border border-digitalnest-dark-grey
                     hover:bg-[#2A2A2A] hover:text-white transition-all duration-300">My Dashboard</a>
                 @endauth
@@ -114,11 +114,11 @@
                 <li class="py-5 bg-red-500 text-white font-bold">
                     {{$error}}
                 </li>
-            @endforeach    
+            @endforeach
         </ul>
     </div>
     @endif
-    
+
     <section id="checkout" class="container max-w-[1130px] mx-auto mt-[30px]">
         <div class="w-full flex justify-center gap-[118px]">
             <div class="product-info flex flex-col gap-4 w-min h-fit mt-[18px]">
@@ -135,7 +135,7 @@
                             <p
                                 class="bg-[#2A2A2A] font-semibold text-xs text-digitalnest-grey rounded-[4px] p-[4px_6px] w-fit">
                                 {{$product->category->name}}</p>
-                            
+
                         </div>
                         <div class="flex flex-col justify-between items-start gap-y-4">
                             <div class="flex items-center gap-2">

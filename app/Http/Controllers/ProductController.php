@@ -21,11 +21,11 @@ class ProductController extends Controller
     {
         //
         $products = Product::where('creator_id', Auth::id())->get();
-        return view('admin.products.index', [
+        return view('creator.products.index', [
             'products' => $products
         ]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -33,7 +33,7 @@ class ProductController extends Controller
     {
         //
         $categories = Category::all();
-        return view('admin.products.create', [
+        return view('creator.products.create', [
             'categories' => $categories
         ]);
     }
@@ -44,7 +44,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-        
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'cover' => ['required', 'image', 'mimes:png,jpg,jpeg'],
@@ -70,7 +70,7 @@ class ProductController extends Controller
             $newProduct = Product::create($validated);
             DB::commit();
 
-            return redirect()->route('admin.products.index')->with('success','Product created successfuly!');
+            return redirect()->route('creator.products.index')->with('success','Product created successfuly!');
         }
         catch(\Exception $e){
             DB::rollback();
@@ -105,7 +105,7 @@ class ProductController extends Controller
             $exitsReveiew = Review::where('reviewer_id', $user->id)
             ->where('product_id', $product->id)
             ->first();
-    
+
             if ($exitsReveiew) {
                 session()->flash('errorReview', 'You have filled out the review');
                 return redirect()->back();
@@ -139,7 +139,7 @@ class ProductController extends Controller
     {
         //
         $categories = Category::all();
-        return view('admin.products.edit', [
+        return view('creator.products.edit', [
             'product' => $product,
             'categories' => $categories
         ]);
@@ -163,7 +163,7 @@ class ProductController extends Controller
         DB::beginTransaction();
 
         try{
-            
+
             if($request->hasFile('cover')){
                 $coverPath = $request->file('cover')->store('product_covers', 'public');
                 $validated['cover'] = $coverPath;
@@ -175,12 +175,12 @@ class ProductController extends Controller
 
             $validated['slug'] = Str::slug($request->name);
             $validated['creator_id'] = Auth::id();
-            
+
             $product->update($validated);
 
             DB::commit();
 
-            return redirect()->route('admin.products.index')->with('success','Product created successfuly!');
+            return redirect()->route('creator.products.index')->with('success','Product created successfuly!');
         }
         catch(\Exception $e){
             DB::rollback();
@@ -201,7 +201,7 @@ class ProductController extends Controller
         //
         try{
             $product->delete();
-            return redirect()->route('admin.products.index')->with('success','Product deleted successfuly!');
+            return redirect()->route('creator.products.index')->with('success','Product deleted successfuly!');
         }
         catch(\Exception $e){
 

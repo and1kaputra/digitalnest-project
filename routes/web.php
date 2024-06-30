@@ -34,20 +34,20 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/checkout/{product:slug}', [CheckoutController::class, 'checkout'])->name('front.checkout');
     Route::post('/checkout/store/{product:slug}', [CheckoutController::class, 'store'])->name('front.checkout.store');
-   
+
     Route::middleware('role:admin')->group(function () {
-        Route::get('/admin/coba', [FrontController::class, 'index'])->name('front.index');
+        Route::get('/superadmin/dashboard', [FrontController::class, 'index'])->name('superadmin.dashboard');
     });
 
-    Route::prefix('admin')->name('admin.')->group(function(){
+    Route::prefix('creator')->name('creator.')->group(function(){
         Route::resource('products', ProductController::class);
         Route::resource('product_orders', ProductOrderController::class);
-        
+
         Route::get('/transactions', [ProductOrderController::class, 'transactions'])->name('product_orders.transactions');
         Route::get('/transactions/details/{productOrder}', [ProductOrderController::class, 'transactions_details'])->name('product_orders.transactions.details');
-        
+
         Route::get('/download/file/{productOrder}', [ProductOrderController::class, 'download_file'])->name('product_orders.download')->middleware('throttle:1,1');
-        
+
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::put('/declined/{productOrder}', [ProductOrderController::class, "declined"])->name('product_orders.declined');
         Route::post('/rating/{product}', [ProductController::class, "rating"])->name('review.rating');
