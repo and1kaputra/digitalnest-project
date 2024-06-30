@@ -49,7 +49,7 @@
     </div>
     <div class="w-full overflow-x-hidden no-scrollbar">
         <div class="testi-carousel" data-flickity>
-            <div class="flex w-[calc((100vw-1130px-20px)/2)] shrink-0"></div>
+            <div class="flex w-fit shrink-0"></div>
             @forelse($categories as $category)
             <a href="{{route('front.category', $category)}}"
                 class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent
@@ -66,7 +66,6 @@
                 </div>
             </a>
             @empty
-            @endforelse
             <p>Empty Category</p>
             @endforelse
         </div>
