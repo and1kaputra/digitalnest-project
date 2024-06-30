@@ -32,22 +32,24 @@
     </header>
 
     <section id="Category" class="container max-w-[1130px] mx-auto mb-[102px] flex flex-col gap-8">
-        <h2 class="font-semibold text-[32px]">Category</h2>
-        <div class="flex justify-between items-center">
-            <a href="{{route('front.index')}}"
-                class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300">
-                <div
-                    class="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
-                    <div class="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
-                        <img src="{{asset('images/icons/cart.svg')}}" alt="icon">
-                    </div>
-                    <div class="px-[6px] flex flex-col text-left">
-                        <p class="font-bold text-sm">All Products</p>
-                        <p class="text-xs text-digitalnest-grey">Everything in One Place</p>
-                    </div>
-                </div>
-            </a>
 
+
+
+
+    <div class="container max-w-[1130px] mx-auto flex justify-between items-center">
+        <h2 class="font-semibold text-[32px]">Category</h2>
+        <div class="flex gap-[14px] items-center">
+            <button class="btn-prev w-10 h-10 shrink-0 rounded-full overflow-hidden rotate-180">
+                <img src="{{asset('/images/icons/circle-arrow-r.svg')}}" alt="icon">
+            </button>
+            <button class="btn-next w-10 h-10 shrink-0 rounded-full overflow-hidden">
+                <img src="{{asset('/images/icons/circle-arrow-r.svg')}}" alt="icon">
+            </button>
+        </div>
+    </div>
+    <div class="w-full overflow-x-hidden no-scrollbar">
+        <div class="testi-carousel" data-flickity>
+            <div class="flex w-[calc((100vw-1130px-20px)/2)] shrink-0"></div>
             @forelse($categories as $category)
             <a href="{{route('front.category', $category)}}"
                 class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent
@@ -65,8 +67,12 @@
             </a>
             @empty
             @endforelse
-
+            <p>Empty Category</p>
+            @endforelse
         </div>
+    </div>
+
+
     </section>
 
     <section id="NewProduct" class="container max-w-[1130px] mx-auto mb-[102px] flex flex-col gap-8">
@@ -77,15 +83,15 @@
                 <div class="product-card flex flex-col rounded-[18px] bg-[#181818] overflow-hidden">
                     <a href="{{route('front.details', $product->slug)}}" class="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative">
                         <img src="{{Storage::url($product->cover)}}" class="w-full h-full object-cover" alt="thumbnail">
-                        <p class="backdrop-blur bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] 
+                        <p class="backdrop-blur bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px]
                         z-10">Rp{{number_format($product->price)}}</p>
                     </a>
                     <div class="p-[10px_14px_12px] h-full flex flex-col justify-between gap-[14px]">
                         <div class="flex flex-col gap-1">
-                            <a href="{{route('front.details', $product->slug)}}" class="font-semibold line-clamp-2 
+                            <a href="{{route('front.details', $product->slug)}}" class="font-semibold line-clamp-2
                             hover:line-clamp-none">{{$product->name}}</a>
                             <p
-                                class="bg-[#2A2A2A] font-semibold text-xs text-digitalnest-grey rounded-[4px] p-[4px_6px] 
+                                class="bg-[#2A2A2A] font-semibold text-xs text-digitalnest-grey rounded-[4px] p-[4px_6px]
                                 w-fit">{{$product->category->name}}</p>
                         </div>
                         <div class="flex items-center gap-[6px]">
