@@ -56,6 +56,12 @@
                     </div>
 
                     <div class="mt-4">
+                        <x-input-label for="type" :value="__('type file')" />
+                        <x-text-input value="{{$product->type}}" id="type" class="block mt-1 w-full" type="text" name="type"  required autofocus autocomplete="type" />
+                        <x-input-error :messages="$errors->get('type')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
                         <x-input-label for="category" :value="__('category')" />
                         <select name="category_id" id="category" class="w-full py-3 pl-5 border">
                             <option value="{{$product->category->id}}" selected>{{$product->category->name}}</option>
@@ -69,9 +75,22 @@
                     </div>
 
                     <div class="mt-4">
+                        <x-input-label for="tool" :value="__('tool')" />
+                        <select name="tool_id" id="tool" class="w-full py-3 pl-5 border">
+                            <option value="{{$product->tool->id}}" selected>{{$product->tool->name}}</option>
+                            // perulangan data category dari database
+                            @forelse($tools as $tool)
+                                <option value="{{$tool->id}}">{{$tool->name}}</option>
+                            @empty
+                            @endforelse
+                        </select>
+                        <x-input-error :messages="$errors->get('tools')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
                         <x-input-label for="about" :value="__('about')" />
-                        <textarea name="about" id="about" class="w-full py-3 pl-5 border">{{$product->about}}"</textarea>
-                        <x-input-error :messages="$errors->get('category')" class="mt-2" />
+                        <textarea name="about" id="about" class="w-full py-3 pl-5 border"  required autofocus autocomplete="about">{{$product->about}}</textarea>
+                        <x-input-error :messages="$errors->get('about')" class="mt-2"  />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">

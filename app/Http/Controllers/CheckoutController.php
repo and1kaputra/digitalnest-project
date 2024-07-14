@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductOrder;
 use Illuminate\Http\Request;
@@ -13,8 +14,10 @@ class CheckoutController extends Controller
 {
     //
     public function checkout(Product $product){
+        $categories = Category::all();
         return view('front.checkout', [
-            'product' => $product
+            'product' => $product,
+            'categories' => $categories,
         ]);
     }
 

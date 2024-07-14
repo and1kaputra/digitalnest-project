@@ -1,5 +1,5 @@
 <footer class="bg-[#181818] py-[34px]">
-        <div class="container max-w-[1130px] mx-auto flex flex-col gap-[66px]">
+        <div class="container max-w-[1130px] mx-auto flex flex-col gap-[35px]">
             <div class="flex justify-between">
                 <div class="flex flex-col justify-between">
                     <div class="flex shrink-0">
@@ -28,15 +28,15 @@
                     </div>
                 </div>
                 <div class="flex gap-[72px]">
-                    <div class="flex flex-col gap-8">
-                        {{-- <p class="font-semibold text-sm">Browse</p>
-                        <div class="flex flex-col gap-[18px]">
-                            <a href="" class="text-digitalnest-grey font-semibold text-xs">All Products</a>
-                            <a href="" class="text-digitalnest-grey font-semibold text-xs">Templates</a>
-                            <a href="" class="text-digitalnest-grey font-semibold text-xs">Ebooks</a>
-                            <a href="" class="text-digitalnest-grey font-semibold text-xs">Courses</a>
-                            <a href="" class="text-digitalnest-grey font-semibold text-xs">Fonts</a>
-                        </div> --}}
+                    <div class="flex flex-col gap-1">   
+                        <p class="font-semibold text-sm">Contac Us</p>
+                        <div class="flex flex-col gap-[8px]">
+                            <p class="text-digitalnest-grey font-semibold text-xs">Reach out to our support team</p>
+                            <p class="text-digitalnest-grey font-semibold text-xs">if theres any problem of the product and the website</p>
+                            <p class="text-digitalnest-grey font-semibold text-xs">at support@example.com</p>
+                            {{-- <a href="" class="text-digitalnest-grey font-semibold text-xs">Courses</a>
+                            <a href="" class="text-digitalnest-grey font-semibold text-xs">Fonts</a> --}}
+                        </div>
                     </div>
                     <div class="flex flex-col gap-8">
                         {{-- <p class="font-semibold text-sm">Platform</p> --}}
@@ -64,9 +64,9 @@
                             <a href="" class="text-digitalnest-grey font-semibold text-xs">Careers</a> --}}
                         </div>
                     </div>
+                    <p class="text-[10px] text-[#595959]">© 2024, DigitalNest LLC.</p>
                 </div>
             </div>
-            {{-- <p class="text-[10px] text-[#595959]">© 2024, DigitalNest LLC.</p> --}}
         </div>
     </footer>
 

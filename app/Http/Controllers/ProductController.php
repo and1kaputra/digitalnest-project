@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreToolProductRequest;
+use App\Http\Requests\StoreToolProjectRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductOrder;
+use App\Models\ProductTool;
+use App\Models\ProjectTool;
 use App\Models\Review;
+use App\Models\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -33,8 +38,10 @@ class ProductController extends Controller
     {
         //
         $categories = Category::all();
+        $tools = Tools::all();
         return view('creator.products.create', [
-            'categories' => $categories
+            'categories' => $categories,
+            'tools' => $tools
         ]);
     }
 
@@ -51,6 +58,8 @@ class ProductController extends Controller
             'path_file' => ['required', 'file', 'mimes:zip'],
             'about' => ['required', 'string', 'max:65535'],
             'category_id' => ['required', 'integer'],
+            'tool_id' => ['required', 'integer'],
+            'type' => ['required', 'string', 'max:5'],
             'price' => ['required', 'integer', 'min:0'],
         ]);
 
@@ -91,6 +100,31 @@ class ProductController extends Controller
         //
     }
 
+    public function product_tools(Product $product) {
+        $tools = Tools::all();
+
+
+        return view('creator.products.tool', compact('tools', "product"));;
+    }
+
+
+
+
+    public function product_tool_store(StoreToolProductRequest $request, Product $product)
+    {
+        
+        DB::transaction(function () use ($request, $product) {
+            $validated = $request->validated();
+            $validated["product_id"] = $product->id;
+
+            $toolProject = ProductTool::firstOrCreate($validated);
+        });
+
+        return redirect()->route('creator.product.tools', $product->id);
+
+
+    }
+
     public function rating(Request $request, Product $product) {
         $user = Auth::user();
         $validated = $request->validate([
@@ -117,6 +151,7 @@ class ProductController extends Controller
                 "stars" => $validated["stars"],
                 "review" => $validated["review"]
             ]);
+
             DB::commit();
 
             return redirect()->route('front.details', $product->slug);
@@ -139,9 +174,11 @@ class ProductController extends Controller
     {
         //
         $categories = Category::all();
+        $tools = Tools::all();
         return view('creator.products.edit', [
             'product' => $product,
-            'categories' => $categories
+            'categories' => $categories,
+            'tools' => $tools
         ]);
     }
 
@@ -157,6 +194,8 @@ class ProductController extends Controller
             'path_file' => ['sometimes', 'file', 'mimes:zip'],
             'about' => ['required', 'string', 'max:65535'],
             'category_id' => ['required', 'integer'],
+            'tool_id' => ['required', 'integer'],
+            'type' => ['required', 'string', 'max:5'],
             'price' => ['required', 'integer', 'min:0'],
         ]);
 
@@ -191,6 +230,22 @@ class ProductController extends Controller
 
             throw $error;
         }
+}
+
+public function destroy_product_tool(ProductTool $productTool)
+{
+    //
+
+    DB::beginTransaction();
+
+    try{
+        $productTool->delete();
+        DB::commit();
+        return redirect()->route('creator.product.tools', $productTool->product_id);
+    }catch(\Exception $e) {
+            DB::rollback();
+            return redirect()->route('creator.product.tools', $productTool->product_id);
+    }
 }
 
     /**

@@ -48,6 +48,16 @@
                             {{ __('Categories') }}
                         </x-nav-link>
                     </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('superadmin.tools.index')" :active="request()->routeIs('home')">
+                            {{ __('Tools') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('superadmin.users.index')" :active="request()->routeIs('home')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    </div>
                 @endif
 
             </div>

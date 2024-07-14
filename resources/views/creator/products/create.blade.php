@@ -40,7 +40,7 @@
 
                     <!-- Name -->
                     <div class="mt-4">
-                        <x-input-label for="name" :value="__('Name')" />
+                        <x-input-label for="name" :value="__('name')" />
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
@@ -49,6 +49,12 @@
                         <x-input-label for="price" :value="__('price')" />
                         <x-text-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')" required autofocus autocomplete="price" />
                         <x-input-error :messages="$errors->get('price')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input-label for="type" :value="__('type file')" />
+                        <x-text-input id="type" class="block mt-1 w-full" type="text" name="type" :value="old('type')" required autofocus autocomplete="type" />
+                        <x-input-error :messages="$errors->get('type')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
@@ -63,11 +69,22 @@
                         </select>
                         <x-input-error :messages="$errors->get('category')" class="mt-2" />
                     </div>
+                    <div class="mt-4">
+                        <x-input-label for="tool" :value="__('tool')" />
+                        <select name="tool_id" id="tool" class="w-full py-3 pl-5 border">
+                            <option value="">Select Tool</option>
+                            @forelse($tools as $tool)
+                                <option value="{{$tool->id}}">{{$tool->name}}</option>
+                            @empty
+                            @endforelse
+                        </select>
+                        <x-input-error :messages="$errors->get('tools')" class="mt-2" />
+                    </div>
 
                     <div class="mt-4">
                         <x-input-label for="about" :value="__('about')" />
-                        <textarea name="about" id="about" class="w-full py-3 pl-5 border"></textarea>
-                        <x-input-error :messages="$errors->get('category')" class="mt-2" />
+                        <textarea name="about" id="about" class="w-full py-3 pl-5 border" :value="old('about')" required autofocus autocomplete="about"></textarea>
+                        <x-input-error :messages="$errors->get('about')" class="mt-2"  />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">

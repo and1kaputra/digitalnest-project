@@ -2,7 +2,7 @@
     <x-slot name="header">
 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Categories') }}
+            {{ __('Users') }}
         </h2>
     </x-slot>
 
@@ -19,31 +19,34 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+                @endif
 
             <div class="flex flex-row justify-between items-center mb-5">
-                <h3 class="text-indigo-950 font-bold text-2xl">Categories</h3>
-                <a href="{{ route("superadmin.categories.create") }}" class="rounded-full w-fit py-3 px-5 bg-indigo-500 text-white">
-                    Add New Category
-                </a>
+                <h3 class="text-indigo-950 font-bold text-2xl">Users</h3>
             </div>
-                @forelse ($categories as $category)
+                @forelse ($users as $user)
                 <div class="item-card flex flex-row justify-between items-center w-full">
                     <div class="flex flex-row items-center gap-x-5 w-1/3">
-                        <img src='{{ Storage::url($category->icon) }}' alt="icons" class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <img src='{{ Storage::url($user->avatar) }}' alt="icons" class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <div class="flex flex-col">
-                            <h3 class="text-indigo-950 text-xl font-bold">{{ $category->name }}</h3>
+                            <h3 class="text-indigo-950 text-xl font-bold">{{ $user->name }}</h3>
                         </div>
                     </div>
                     <div  class="hidden md:flex flex-col w-1/3">
                         <p class="text-slate-500 text-sm">Date</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">{{ $category->created_at->format("M d, y") }}</h3>
+                        <h3 class="text-indigo-950 text-xl font-bold">{{ $user->created_at->format("M d, y") }}</h3>
                     </div>
                     <div class="hidden md:flex flex-row items-center gap-x-3 w-1/3">
-                        <a href="{{ route('superadmin.categories.edit', $category) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                            Edit
-                        </a>
-                        <form action="{{ route('superadmin.categories.destroy', $category) }}" method="POST">
+                        @if($user->suspanded) 
+                            <a href="{{ route('superadmin.users.recovery', $user) }}" class="font-bold py-4 px-6 bg-emerald-500 text-white rounded-full">
+                                 Recovery
+                            </a>
+                        @else
+                            <a href="{{ route('superadmin.users.suspend', $user) }}" class="font-bold py-4 px-6 bg-red-500 text-white rounded-full">
+                                Suspend
+                            </a>
+                        @endif
+                        <form action="{{ route('superadmin.users.destroy', $user) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="font-bold py-4 px-6 bg-red-700 text-white rounded-full">

@@ -2,7 +2,7 @@
 @section('title', 'Digital Nest Marketplace')
 @section('content')
 
-    <x-navbar/>
+<x-navbar :categories="$categories"/>
 
         
     <header

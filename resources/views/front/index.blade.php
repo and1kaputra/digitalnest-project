@@ -2,7 +2,7 @@
 @section('title', 'Digital Nest Marketplace')
 @section('content')
 
-<x-navbar/>
+<x-navbar :categories="$categories"/>
 
     <header
         class="w-full pt-[74px] pb-[34px] bg-[url('{{asset('images/backgrounds/hero-image.png')}}')] bg-cover bg-no-repeat bg-center relative z-0">
@@ -51,7 +51,7 @@
         <div class="testi-carousel" data-flickity>
             <div class="flex w-fit shrink-0"></div>
             @forelse($categories as $category)
-            <a href="{{route('front.category', $category)}}"
+            <a href="{{route('front.category', $category->slug)}}"
                 class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent
                  hover:bg-img-purple-to-orange transition-all duration-300">
                 <div
@@ -75,10 +75,15 @@
     </section>
 
     <section id="NewProduct" class="container max-w-[1130px] mx-auto mb-[102px] flex flex-col gap-8">
-        <h2 class="font-semibold text-[32px]">New Product</h2>
+        <div class="flex items-center justify-between">
+            <h2 class="font-semibold text-[32px]">New Product</h2>
+            <a href="{{route('front.list_product')}}"
+                class="p-[8px_16px] w-fit h-fit rounded-[12px] text-digitalnest-grey border border-digitalnest-dark-grey
+                hover:bg-[#2A2A2A] hover:text-white transition-all duration-300">View More</a>
+        </div>
         <div class="grid grid-cols-4 gap-[22px]">
 
-            @forelse($products as $product)
+            @forelse($newproducts as $product)
                 <div class="product-card flex flex-col rounded-[18px] bg-[#181818] overflow-hidden">
                     <a href="{{route('front.details', $product->slug)}}" class="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative">
                         <img src="{{Storage::url($product->cover)}}" class="w-full h-full object-cover" alt="thumbnail">
@@ -89,9 +94,15 @@
                         <div class="flex flex-col gap-1">
                             <a href="{{route('front.details', $product->slug)}}" class="font-semibold line-clamp-2
                             hover:line-clamp-none">{{$product->name}}</a>
-                            <p
-                                class="bg-[#2A2A2A] font-semibold text-xs text-digitalnest-grey rounded-[4px] p-[4px_6px]
-                                w-fit">{{$product->category->name}}</p>
+                            <div class="flex justify-between">
+                                <p
+                                    class="bg-[#2A2A2A] font-semibold text-xs text-digitalnest-grey rounded-[4px] p-[4px_6px]
+                                    w-fit">{{$product->category->name}}</p>
+                                <p
+                                    class="bg-[#2A2A2A] font-semibold text-xs text-digitalnest-grey rounded-[4px] p-[4px_6px]
+                                    w-fit">{{$product->type}}</p>
+
+                            </div>
                         </div>
                         <div class="flex items-center gap-[6px]">
                             <div class="w-6 h-6 flex shrink-0 items-center justify-center rounded-full overflow-hidden">
@@ -106,9 +117,11 @@
         </div>
     </section>
 
+</section>
+    
     <x-testimonials :review="$review"/>
 
-    <x-tools/>
+    {{-- <x-tools/> --}}
 
 <x-footer/>
 
@@ -169,6 +182,6 @@
                     dropdownMenu.classList.add('hidden');
                 }
             });
-        });
+        }); 
     </script>
 @endpush

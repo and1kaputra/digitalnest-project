@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileUpdatePhotoRequest;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -33,6 +36,25 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+    public function update_photo_profile(ProfileUpdatePhotoRequest $request, User $user ): RedirectResponse
+    {
+    
+      
+        DB::transaction(function() use ($request, $user) {
+            $validated = $request->validated();
+
+            if($request->hasFile('avatar')) {
+                $avatarPath = $request->file('avatar')->store('avatars', 'public');
+                $validated['avatar'] = $avatarPath;
+            }
+
+            $user->update($validated);
+        });
+
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

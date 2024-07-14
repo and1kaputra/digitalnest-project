@@ -2,7 +2,7 @@
 @section('title', 'Digital Nest Marketplace')
 @section('content')
 
-<nav class="w-full bg-[#00000010] backdrop-blur-lg z-10">
+<x-navbar :categories="$categories"/>
         <div class="container max-w-[1130px] mx-auto flex items-center justify-between h-[74px]">
             <div class="flex items-center gap-[26px]">
                 <a href="index.html" class="flex w-[154px] shrink-0 items-center">
@@ -85,7 +85,7 @@
                         </div>
                     </li>
                     <li class="text-digitalnest-grey hover:text-digitalnest-light-grey transition-all duration-300">
-                        <a href="">About</a>
+                        {{-- <a href="">About</a> --}}
                     </li>
                 </ul>
             </div>

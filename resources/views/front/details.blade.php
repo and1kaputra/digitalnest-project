@@ -2,7 +2,7 @@
 @section('title', 'Digital Nest Marketplace')
 @section('content')
 
-<x-navbar/>
+<x-navbar :categories="$categories"/>
 
 <header class="w-full pt-[74px] pb-[103px] relative z-0">
         <div class="container max-w-[1130px] mx-auto flex flex-col z-10">
@@ -31,11 +31,15 @@
                         <p class="font-semibold text-xl">Overview</p>
                         <p class="text-digitalnest-grey leading-[30px]">{{$product->about}}</p>
                         <div class="flex items-center gap-[10px] mt-1">
+                            @forelse($product->tools as $tool)
                             <a href=""
-                                class="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]">
-                                <img src="{{asset('/images/logos/Python.svg')}}" class='p-[5px]' alt="logo">
+                            class="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]">
+                                     <img src="{{Storage::url($tool->icon)}}" class='p-[5px]' alt="logo">
                             </a>
-                            <a href=""
+                            @empty
+                            @endforelse
+                           
+                            {{-- <a href=""
                                 class="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]">
                                 <img src="{{asset('/images/logos/figma-logo.svg')}}" class='p-[5px]' alt="logo">
                             </a>
@@ -58,10 +62,10 @@
                             <a href=""
                                 class="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]">
                                 <img src="{{asset('/images/logos/flutter.svg')}}" class='p-[5px]' alt="logo">
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
-                    <div class="flex flex-row flex-wrap gap-4 items-center">
+                    {{-- <div class="flex flex-row flex-wrap gap-4 items-center">
                         <a href=""
                             class="tags p-[4px_8px] border border-[#414141] rounded-[4px] h-fit w-fit text-xs text-digitalnest-light-grey hover:bg-[#2A2A2A] transition-all duration-300">bank</a>
                         <a href=""
@@ -87,7 +91,7 @@
                             class="tags p-[4px_8px] border border-[#414141] rounded-[4px] h-fit w-fit text-xs text-digitalnest-light-grey hover:bg-[#2A2A2A] transition-all duration-300">wallet</a>
                         <a href=""
                             class="tags p-[4px_8px] border border-[#414141] rounded-[4px] h-fit w-fit text-xs text-digitalnest-light-grey hover:bg-[#2A2A2A] transition-all duration-300">wallet</a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="flex flex-col w-[366px] gap-[30px] flex-nowrap overflow-y-visible">
                     <div class="p-[2px] bg-img-purple-to-orange rounded-[20px] flex w-full h-fit">
@@ -157,8 +161,7 @@
                                 <img src="{{asset('/images/icons/arrow-right.svg')}}" alt="icon">
                             </a> --}}
                         </div>
-                        <p class="text-sm leading-[24px] text-digitalnest-grey">A young UI/UX Designer from Indonesia.
-                            Specialized in mobile apps designs & loves creating UI Kit 🇮🇩</p>
+                        <p class="text-sm leading-[24px] text-digitalnest-grey">{{$product->creator->description}}</p>
                     </div>
                 </div>
             </div>

@@ -25,10 +25,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        
+        
         $request->authenticate();
-
         $request->session()->regenerate();
 
+        if($request->user()->suspanded) {
+            $request->session()->flush();
+            return redirect(route('front.suspend'));
+        }
+        
         $role = $request->user()->role;
         switch ($role) {
             case 'admin':

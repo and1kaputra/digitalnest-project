@@ -219,6 +219,14 @@ textarea {
   /* 3 */
 }
 
+
+
+
+.scroolbar-tool::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
 /*
 Remove the inheritance of text transform in Edge and Firefox.
 */

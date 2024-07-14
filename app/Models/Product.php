@@ -15,8 +15,18 @@ class Product extends Model
     public  function category(){
         return $this->belongsTo(Category::class, 'category_id');
     }
+    
+    // public function tool(){
+    //     return $this->belongsTo(Tools::class, 'tool_id');
+    // }
+
+    public function tools() {
+        return $this->belongsToMany(Tools::class, 'product_tools', 'product_id', 'tool_id')
+        ->wherePivotNull('deleted_at')
+        ->withPivot('id');
+    }
+
     public  function creator(){
         return $this->belongsTo(User::class);
-
     }
 }

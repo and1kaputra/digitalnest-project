@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 @empty
-                <p>Belum ada pembelian produk tersedia</p>
+                <p>No product purchases available yet</p>
                 @endforelse
             </div>
         </div>

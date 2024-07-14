@@ -28,21 +28,25 @@
                     </a>
                 </div>
                 @forelse($products as $product)
-                    <div class="item-product flex flex-row justify-between items-center">
-                        <div class="flex flex-row items-center gap-x-5">
-                            <img src="{{Storage::url($product->cover)}}" class="rounded-2xl h-[100px] w-auto" alt="">
+                    <div class="item-product flex flex-row justify-between items-center w-full">
+                        <div class="flex flex-row items-center gap-x-5 w-1/3">
+                            <img src="{{Storage::url($product->cover)}}" class="rounded-2xl h-[100px] w-[150px] object-cover object-center" alt="">
                              <div>
                                 <h3 class="text-indigo-950 font-bold text-xl">{{$product->name}}</h3>
                                 <p class="text-slate-500 text-sm">{{$product->category->name}}</p>
+                             </div>
                         </div>
-                    </div>
-                    <div>
+                    <div class="flex justify-center items-center w-1/3 text-center">
                         <p class="text-indigo-950 font-bold text-xl">Rp {{number_format($product->price)}}</p>
                     </div>
-                    <div class="flex flex-row gap-x-3">
+                    <div class="flex flex-row gap-x-3 w-1/3">
+                        <a href="{{route('creator.product.tools', $product)}}" class="rounded-full font-bold py-3 px-5 bg-indigo-500 text-white">
+                            Add Tools
+                        </a>
                         <a href="{{route('creator.products.edit', $product)}}" class="rounded-full font-bold py-3 px-5 bg-indigo-500 text-white">
                             Edit
                         </a>
+                        
 
                         <form action="{{route('creator.products.destroy', $product)}}" method="POST">
                             @csrf
@@ -54,7 +58,7 @@
                     </div>
                 </div>
             @empty
-                <p>No products available yet</p>
+                <p>You haven't added a product</p>
             @endforelse
             </div>
         </div>

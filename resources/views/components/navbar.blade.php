@@ -1,4 +1,4 @@
-<nav class="w-full fixed top-0 bg-[#00000010] backdrop-blur-lg z-10">
+<nav class="w-full fixed top-0 bg-[#00000010] backdrop-blur-lg z-[100]">
         <div class="container max-w-[1130px] mx-auto flex items-center justify-between h-[74px]">
             <div class="flex items-center gap-[26px]">
                 <a href="{{route('front.index')}}" class="flex w-[154px] shrink-0 items-center">
@@ -30,58 +30,25 @@
                                     <img src="{{asset('images/icons/crown.svg')}}" alt="icon">
                                 </div>
                             </div>
+                            @forelse($categories as $category)
                             <div
                                 class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
                                 <div class="flex items-center">
-                                    <a href="{{route('front.category', 3)}}" class="w-[58px] h-[58px] shrink-0 flex items-center">
-                                        <img src="{{asset('images/ic_template.svg')}}" alt="icon">
+                                    <a href="{{route('front.category', $category->slug)}}" class="w-[58px] h-[58px] shrink-0 flex items-center">
+                                        <img src="{{Storage::url($category->icon)}}" alt="icon">
                                     </a>
-                                    <a href="{{route('front.category', 3)}}" class="flex flex-col">
-                                        <p class="font-bold text-sm text-white">Templates</p>
-                                        <p class="text-xs text-digitalnest-grey">Designs Made Easy</p>
-                                    </a>
-                                </div>
-                            </div>
-                            <div
-                                class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
-                                <div class="flex items-center">
-                                    <a href="{{route('front.category', 2)}}" class="w-[58px] h-[58px] flex shrink-0 items-center">
-                                        <img src="{{asset('images/ic_course.svg')}}" alt="icon">
-                                    </a>
-                                    <a href="{{route('front.category', 2)}}" class="flex flex-col">
-                                        <p class="font-bold text-sm text-white">Courses</p>
-                                        <p class="text-xs text-digitalnest-grey">Expand Your Skills</p>
+                                    <a href="{{route('front.category', $category->slug)}}" class="flex flex-col">
+                                        <p class="font-bold text-sm text-white">{{$category->name}}</p>
+                                        <p class="text-xs text-digitalnest-grey">{{$category->desc}}</p>
                                     </a>
                                 </div>
                             </div>
-                            <div
-                                class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
-                                <div class="flex items-center">
-                                    <a href="{{route('front.category', 1)}}" class="w-[58px] h-[58px] flex shrink-0 items-center">
-                                        <img src="{{asset('images/ic_ebook.svg')}}" alt="icon">
-                                    </a>
-                                    <a href="{{route('front.category', 1)}}" class="flex flex-col">
-                                        <p class="font-bold text-sm text-white">Ebooks</p>
-                                        <p class="text-xs text-digitalnest-grey">Read and Learn</p>
-                                    </a>
-                                </div>
-                            </div>
-                            <div
-                                class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
-                                <div class="flex items-center">
-                                    <a href="{{route('front.category', 4)}}" class="w-[58px] h-[58px] flex shrink-0 items-center">
-                                        <img src="{{asset('images/ic_font.svg')}}" alt="icon">
-                                    </a>
-                                    <a href="{{route('front.category', 4)}}" class="flex flex-col">
-                                        <p class="font-bold text-sm text-white">Fonts</p>
-                                        <p class="text-xs text-digitalnest-grey">Typography Selection</p>
-                                    </a>
-                                </div>
-                            </div>
+                            @empty
+                            @endforelse
                         </div>
                     </li>
                     <li class="text-digitalnest-grey hover:text-digitalnest-light-grey transition-all duration-300">
-                        {{-- <a href="">About</a> --}}
+                        <a href="{{route('front.list_product')}}">Products</a>
                     </li>
                 </ul>
             </div>

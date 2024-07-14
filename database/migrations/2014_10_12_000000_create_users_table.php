@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('bank_account');
             $table->string('bank_name');
             $table->string('role');
+            $table->text('description');
             $table->unsignedBigInteger('bank_account_number');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

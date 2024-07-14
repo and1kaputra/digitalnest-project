@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'avatar'=> ['required', 'image','mimes:png,jpg,jpeg'],
+            'avatar'=> [ 'image','mimes:png,jpg,jpeg'],
             'occupation'=> ['required','string', 'max:255'],
             'bank_name'=> ['required','string', 'max:255'],
             'bank_account'=> ['required','string', 'max:255'],
@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
             $avatarPath = $request->file('avatar')->store('avatars', 'public');
         }
         else{
-            $avatarPath = 'images/avatar-default.png';
+            $avatarPath = 'images/avatar-default.PNG';
         }
 
         $user = User::create([
