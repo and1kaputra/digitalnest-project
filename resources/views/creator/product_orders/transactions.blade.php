@@ -25,8 +25,8 @@
                     <h3 class="text-indigo-950 font-bold text-2xl">My Transactions</h3>
                 </div>
                 @forelse($my_transactions as $transaction)
-                    <div class="item-product flex flex-row justify-between items-center">
-                        <div class="flex flex-row items-center gap-x-5">
+                    <div class="item-product flex flex-row justify-between items-center w-full">
+                        <div class="flex flex-row items-center gap-x-3 w-1/3">
                             <img src="{{Storage::url($transaction->product->cover)}}" class="rounded-2xl h-[100px] w-auto" alt="">
                             <div>
                                 <h3 class="text-indigo-950 font-bold text-xl">{{$transaction->product->name}}</h3>
@@ -45,7 +45,7 @@
                                 </span>
                             @elseif($transaction->is_paid == "declined")
                                 <span class="py-1 px-3 rounded-full bg-red-500 text-white font-bold text-sm">
-                                    Declined
+                                    DECLINED
                                 </span>
                             @else
                                 <span class="py-1 px-3 rounded-full bg-orange-500 text-white font-bold text-sm">

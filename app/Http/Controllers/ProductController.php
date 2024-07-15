@@ -55,10 +55,9 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'cover' => ['required', 'image', 'mimes:png,jpg,jpeg'],
-            'path_file' => ['required', 'file', 'mimes:zip'],
+            'path_file' => ['required', 'file', 'mimes:zip,pdf'],
             'about' => ['required', 'string', 'max:65535'],
             'category_id' => ['required', 'integer'],
-            'tool_id' => ['required', 'integer'],
             'type' => ['required', 'string', 'max:5'],
             'price' => ['required', 'integer', 'min:0'],
         ]);
@@ -191,10 +190,9 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'cover' => ['sometimes', 'image', 'mimes:png,jpg,jpeg'],
-            'path_file' => ['sometimes', 'file', 'mimes:zip'],
+            'path_file' => ['sometimes', 'file', 'mimes:zip,pdf'],
             'about' => ['required', 'string', 'max:65535'],
             'category_id' => ['required', 'integer'],
-            'tool_id' => ['required', 'integer'],
             'type' => ['required', 'string', 'max:5'],
             'price' => ['required', 'integer', 'min:0'],
         ]);

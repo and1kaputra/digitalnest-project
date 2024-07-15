@@ -39,7 +39,7 @@
                             </span>
                         @elseif($order->is_paid == "declined")
                         <span class="py-2 px-5 rounded-full bg-red-500 text-white font-bold text-sm">
-                            Declined
+                            DECLINED
                         </span>
                         @else
                             <span class="py-2 px-5 rounded-full bg-orange-500 text-white font-bold text-sm">

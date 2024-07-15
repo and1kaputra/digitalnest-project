@@ -69,17 +69,6 @@
                         </select>
                         <x-input-error :messages="$errors->get('category')" class="mt-2" />
                     </div>
-                    <div class="mt-4">
-                        <x-input-label for="tool" :value="__('tool')" />
-                        <select name="tool_id" id="tool" class="w-full py-3 pl-5 border">
-                            <option value="">Select Tool</option>
-                            @forelse($tools as $tool)
-                                <option value="{{$tool->id}}">{{$tool->name}}</option>
-                            @empty
-                            @endforelse
-                        </select>
-                        <x-input-error :messages="$errors->get('tools')" class="mt-2" />
-                    </div>
 
                     <div class="mt-4">
                         <x-input-label for="about" :value="__('about')" />

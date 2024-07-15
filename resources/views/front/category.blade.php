@@ -69,7 +69,7 @@
 
     <x-testimonials :review="$review_product"/>
 
-    <x-tools/>
+    {{-- <x-tools/> --}}
 
     <x-footer/> 
 

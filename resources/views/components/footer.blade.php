@@ -33,7 +33,7 @@
                         <div class="flex flex-col gap-[8px]">
                             <p class="text-digitalnest-grey font-semibold text-xs">Reach out to our support team</p>
                             <p class="text-digitalnest-grey font-semibold text-xs">if theres any problem of the product and the website</p>
-                            <p class="text-digitalnest-grey font-semibold text-xs">at support@example.com</p>
+                            <p class="text-digitalnest-grey font-semibold text-xs">at digitalnestofficialid.com</p>
                             {{-- <a href="" class="text-digitalnest-grey font-semibold text-xs">Courses</a>
                             <a href="" class="text-digitalnest-grey font-semibold text-xs">Fonts</a> --}}
                         </div>

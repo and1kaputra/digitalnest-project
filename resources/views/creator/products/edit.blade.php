@@ -75,19 +75,6 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="tool" :value="__('tool')" />
-                        <select name="tool_id" id="tool" class="w-full py-3 pl-5 border">
-                            <option value="{{$product->tool->id}}" selected>{{$product->tool->name}}</option>
-                            // perulangan data category dari database
-                            @forelse($tools as $tool)
-                                <option value="{{$tool->id}}">{{$tool->name}}</option>
-                            @empty
-                            @endforelse
-                        </select>
-                        <x-input-error :messages="$errors->get('tools')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
                         <x-input-label for="about" :value="__('about')" />
                         <textarea name="about" id="about" class="w-full py-3 pl-5 border"  required autofocus autocomplete="about">{{$product->about}}</textarea>
                         <x-input-error :messages="$errors->get('about')" class="mt-2"  />
