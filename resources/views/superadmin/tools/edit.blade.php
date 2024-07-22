@@ -28,7 +28,7 @@
 
                     <div class="mt-4">
                         <x-input-label for="icon" :value="__('icon')" />
-                        <img src='{{ Storage::url($tool->icon) }}' alt="icons" class="rounded-2xl object-cover w-[90px] h-[90px]">
+                        <img src='{{ Storage::url($tool->icon) }}' alt="icons" id="tool-preview" class="rounded-2xl object-cover w-[90px] h-[90px]">
                         <x-text-input id="icon" class="block mt-1 w-full" type="file" name="icon"  autofocus autocomplete="icon" />
                         <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                     </div>
@@ -44,4 +44,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('icon').addEventListener('change', function(event) {
+            const [file] = event.target.files;
+            if (file && file.type.startsWith('image/')) {
+                document.getElementById('tool-preview').src = URL.createObjectURL(file);
+            } else {
+                alert('Please select a valid image.');
+                event.target.value = ''; // Clear the input
+                document.getElementById('tool-preview').src = '{{ Storage::url($tool->icon) }}';
+            }
+        });
+    </script>
 </x-app-layout>

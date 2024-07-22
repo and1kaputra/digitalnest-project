@@ -2,6 +2,9 @@
     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
+        <img  id="avatar-preview" src="{{asset("images/avatar-default.png")}}" class="w-[120px] h-[120px] rounded-full mt-4 object-cover object-center" />
+
+
         <div class="mt-4">
             <x-input-label for="avatar" :value="__('avatar')" />
             <x-text-input id="avatar" class="block mt-1 w-full" type="file" name="avatar" required />
@@ -11,38 +14,38 @@
         <!-- Name -->
         <div class="mt-4">
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Input Your Name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="email" placeholder="Input Your Email"/>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <div class="mt-4">
             <x-input-label for="occupation" :value="__('occupation')" />
-            <x-text-input id="occupation" class="block mt-1 w-full" type="text" name="occupation" :value="old('occupation')" required />
+            <x-text-input id="occupation" class="block mt-1 w-full" type="text" name="occupation" :value="old('occupation')" required placeholder="Input Your Ocuupation"/>
             <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
         </div>
 
         <div class="mt-4">
             <x-input-label for="bank_name" :value="__('bank_name')" />
-            <x-text-input id="bank_name" class="block mt-1 w-full" type="text" name="bank_name" :value="old('bank_name')" required />
+            <x-text-input id="bank_name" class="block mt-1 w-full" type="text" name="bank_name" :value="old('bank_name')" required placeholder="Input Your Bank Name 'BCA, MANDIRI'" />
             <x-input-error :messages="$errors->get('bank_name')" class="mt-2" />
         </div>
 
         <div class="mt-4">
             <x-input-label for="bank_account" :value="__('bank_account')" />
-            <x-text-input id="bank_account" class="block mt-1 w-full" type="text" name="bank_account" :value="old('bank_account')" required />
+            <x-text-input id="bank_account" class="block mt-1 w-full" type="text" name="bank_account" :value="old('bank_account')" required placeholder="Input Your Bank Account 'JOSHUA'" />
             <x-input-error :messages="$errors->get('bank_account')" class="mt-2" />
         </div>
 
         <div class="mt-4">
             <x-input-label for="bank_account_number" :value="__('bank_account_number')" />
-            <x-text-input id="bank_account_number" class="block mt-1 w-full" type="number" name="bank_account_number" :value="old('bank_account_number')" required />
+            <x-text-input id="bank_account_number" class="block mt-1 w-full" type="number" name="bank_account_number" :value="old('bank_account_number')" placeholder="00000000"  required />
             <x-input-error :messages="$errors->get('bank_account_number')" class="mt-2" />
         </div>
 
@@ -53,6 +56,7 @@
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
+                            placeholder="Input Your Password"
                             required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -64,6 +68,7 @@
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
+                            placeholder="Repeat Your Password"
                             name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
@@ -79,4 +84,16 @@
             </x-primary-button>
         </div>
     </form>
+
+    <script>
+        document.getElementById('avatar').addEventListener('change', function(event) {
+            const [file] = event.target.files;
+            if (file && file.type.startsWith('image/')) {
+            document.getElementById('avatar-preview').src = URL.createObjectURL(file);
+        } else {
+            alert('Please select a valid image file.');
+            event.target.value = ''; // Clear the input
+        }
+        });
+    </script>
 </x-guest-layout>

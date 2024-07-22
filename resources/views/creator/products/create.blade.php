@@ -28,6 +28,7 @@
 
                     <div class="mt-4">
                         <x-input-label for="cover" :value="__('cover')" />
+                        <img id="cover-preview" class="h-[100px] w-auto" style="display: none;">
                         <x-text-input id="cover" class="block mt-1 w-full" type="file" name="cover" required />
                         <x-input-error :messages="$errors->get('cover')" class="mt-2" />
                     </div>
@@ -86,4 +87,18 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('cover').addEventListener('change', function(event) {
+            const [file] = event.target.files;
+            if (file && file.type.startsWith('image/')) {
+                document.getElementById('cover-preview').src = URL.createObjectURL(file);
+                document.getElementById('cover-preview').style.display = 'block';
+            } else {
+                alert('Please select a valid image.');
+                event.target.value = ''; // Clear the input
+                document.getElementById('cover-preview').style.display = 'none';
+            }
+        });
+
+    </script>
 </x-app-layout>

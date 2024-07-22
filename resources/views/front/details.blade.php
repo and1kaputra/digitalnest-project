@@ -4,7 +4,7 @@
 
 <x-navbar :categories="$categories"/>
 
-<header class="w-full pt-[74px] pb-[103px] relative z-0">
+  <header class="w-full pt-[74px] pb-[103px] relative z-0">
         <div class="container max-w-[1130px] mx-auto flex flex-col z-10">
             <div class="flex flex-col gap-4 mt-7 z-10">
                 <p class="bg-[#2A2A2A] font-semibold text-digitalnest-grey rounded-[4px] p-[8px_16px] w-fit">{{$product->category->name}}</p>
@@ -139,8 +139,17 @@
                                     </div> --}}
                                 </div>
                             </div>
+                            @guest
                             <a href="{{route('front.checkout', $product->slug)}}"
                                 class="bg-[#2D68F8] text-center font-semibold p-[12px_20px] rounded-full hover:bg-[#083297] active:bg-[#062162] transition-all duration-300">Checkout</a>
+                            @endguest
+                            @auth
+                                @if(Auth::user()->role == "user")
+                                <a href="{{route('front.checkout', $product->slug)}}"
+                                    class="bg-[#2D68F8] text-center font-semibold p-[12px_20px] rounded-full hover:bg-[#083297] active:bg-[#062162] transition-all duration-300">Checkout</a>
+                                @endif
+                            @endauth
+                          
                         </div>
                     </div>
                     <div class="w-full p-[30px] bg-[#181818] rounded-[20px] flex flex-col gap-4 h-fit">

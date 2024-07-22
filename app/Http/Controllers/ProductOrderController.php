@@ -16,13 +16,13 @@ class ProductOrderController extends Controller
     public function index()
     {
         //
-        $my_orders = ProductOrder::where('creator_id', Auth::id())->get();
+        $my_orders = ProductOrder::where('creator_id', Auth::id())->orderBy("created_at", "desc")->get();
         return view('creator.product_orders.index', [
             'my_orders' => $my_orders
         ]);
     }
     public function transactions(){
-        $my_transactions = ProductOrder::where('buyer_id', Auth::id())->get();
+        $my_transactions = ProductOrder::where('buyer_id', Auth::id())->orderBy("created_at", "desc")->get();
         return view('creator.product_orders.transactions', [
             'my_transactions' => $my_transactions
         ]);

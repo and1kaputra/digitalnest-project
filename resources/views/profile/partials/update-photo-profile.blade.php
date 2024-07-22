@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <img src="{{Storage::url($user->avatar)}}" class="w-[120px] h-[120px] rounded-full mt-4" />
+    <img src="{{Storage::url($user->avatar)}}" id="avatar-preview" class="w-[120px] h-[120px] rounded-full mt-4 object-cover object-center" />
 
     <form method="post" action="{{ route('profile.update_photo', $user) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
@@ -39,4 +39,17 @@
             @endif
         </div>
     </form>
+
+
+    <script>
+        document.getElementById('avatar').addEventListener('change', function(event) {
+            const [file] = event.target.files;
+            if (file && file.type.startsWith('image/')) {
+            document.getElementById('avatar-preview').src = URL.createObjectURL(file);
+        } else {
+            alert('Please select a valid image file.');
+            event.target.value = ''; // Clear the input
+        }
+        });
+    </script>
 </section>

@@ -58,9 +58,7 @@
                 </div>
             </div>
         @empty
-            <p> 
-                No products available yet.
-            </p>
+            <p>No products available yet.</p>
         @endforelse
 
         </div>

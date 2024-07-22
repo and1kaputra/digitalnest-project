@@ -25,7 +25,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products = Product::where('creator_id', Auth::id())->get();
+        $products = Product::where('creator_id', Auth::id())->orderBy("created_at", "desc")->get();
         return view('creator.products.index', [
             'products' => $products
         ]);
@@ -55,7 +55,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'cover' => ['required', 'image', 'mimes:png,jpg,jpeg'],
-            'path_file' => ['required', 'file', 'mimes:zip,pdf'],
+            'path_file' => ['required', 'file'],
             'about' => ['required', 'string', 'max:65535'],
             'category_id' => ['required', 'integer'],
             'type' => ['required', 'string', 'max:5'],
@@ -75,6 +75,7 @@ class ProductController extends Controller
             }
             $validated['slug'] = Str::slug($request->name);
             $validated['creator_id'] = Auth::id();
+            $validated['tool_id'] = 2;
             $newProduct = Product::create($validated);
             DB::commit();
 

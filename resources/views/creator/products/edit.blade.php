@@ -28,7 +28,7 @@
 
                     <div class="mt-4">
                         <x-input-label for="cover" :value="__('existing cover')" />
-                        <img src="{{Storage::url($product->cover)}}" class="h-[100px] w-auto" alt="">
+                        <img src="{{Storage::url($product->cover)}}" class="h-[100px] w-auto" id="cover-preview" alt="">
                         <x-text-input id="cover" class="block mt-1 w-full" type="file" name="cover" />
                         <x-input-error :messages="$errors->get('cover')" class="mt-2" />
                     </div>
@@ -90,4 +90,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('cover').addEventListener('change', function(event) {
+            const [file] = event.target.files;
+            if (file && file.type.startsWith('image/')) {
+                document.getElementById('cover-preview').src = URL.createObjectURL(file);
+            } else {
+                alert('Please select a valid image.');
+                event.target.value =''; // Clear the input
+            }
+        });
+
+    </script>
 </x-app-layout>

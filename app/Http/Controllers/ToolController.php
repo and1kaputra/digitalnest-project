@@ -16,7 +16,7 @@ class ToolController extends Controller
     public function index()
     {
         //
-        $tools= Tools::all();
+        $tools= Tools::orderBy("created_at", "desc")->get();
         return view('superadmin.tools.index', compact('tools'));
     }
 

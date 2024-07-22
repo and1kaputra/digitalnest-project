@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $users = User::where('role', 'user')->get();
+        $users = User::where('role', 'user')->orderBy("created_at", "desc")->get();
         return view('superadmin.users.index', compact('users'));
     }
 
