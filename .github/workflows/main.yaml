@@ -47,11 +47,6 @@ jobs:
           docker-compose down
           docker-compose pull
           docker-compose up -d --build
-
           docker-compose exec db sh -c "exec mysql -u root -p secret -e \"GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY secret; FLUSH PRIVILEGES;\""
-
-
           docker cp ./database.sql mysql:/database.sql
-
-
           docker-compose exec db sh -c "exec mysql -u root -p secret digitalnesttest < /database.sql"
