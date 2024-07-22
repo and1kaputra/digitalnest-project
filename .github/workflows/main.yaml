@@ -1,44 +1,27 @@
-name: Deploy
+name: deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  deploy-production:
-    name: Deploy Project to Production Server
+  deploy:
     runs-on: ubuntu-latest
-    services:
-      db:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: secret
-          MYSQL_DATABASE: digitalnesttest
-          MYSQL_USER: root
-          MYSQL_PASSWORD: kadek
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v1
-      - name: Fetch built assets from Artifacts
-        uses: actions/download-artifact@v1
-        with:
-          name: assets
-          path: public
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Setup PHP
-        uses: shivammathur/setup-php@master
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
-          extension-csv: mbstring, bcmath
-      - name: Composer install
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Setup Deployer
-        uses: atymic/deployer-php-action@master
-      - name: Deploy to Production
-        env:
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
-        run: php vendor/bin/dep deploy prod --branch="main" -vv
-
+            php-version: 8.0
+            tools: composer:v2
+            coverage: none
+      - name: Install Composer dependencies
+        run: composer update
+      - name: Setup SSH
+        uses: kielabokkie/ssh-key-and-known-hosts-action@v1.2.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-host: ${{ secrets.SSH_HOST }}
+      - name: Deploy Environment
+        run: ./vendor/bin/envoy run deploy
