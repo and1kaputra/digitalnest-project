@@ -32,7 +32,7 @@ services:
     container_name: laravel-db
     restart: unless-stopped
     ports:
-      - "3060:3060"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: digitalnesttest
