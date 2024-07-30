@@ -31,13 +31,13 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:100'],
             'avatar'=> [ 'sometimes', 'image','mimes:png,jpg,jpeg'],
-            'occupation'=> ['required','string', 'max:255'],
-            'bank_name'=> ['required','string', 'max:255'],
-            'bank_account'=> ['required','string', 'max:255'],
+            'occupation'=> ['required','string', 'max:50'],
+            'bank_name'=> ['required','string', 'max:25'],
+            'bank_account'=> ['required','string', 'max:60'],
             'bank_account_number'=> ['required','numeric', 'min:0'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:100', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
