@@ -53,12 +53,12 @@ class ProductController extends Controller
         //
 
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:75'],
             'cover' => ['required', 'image', 'mimes:png,jpg,jpeg'],
             'path_file' => ['required', 'file'],
             'about' => ['required', 'string', 'max:65535'],
             'category_id' => ['required', 'integer'],
-            'type' => ['required', 'string', 'max:5'],
+            'type' => ['required', 'string', 'max:10'],
             'price' => ['required', 'integer', 'min:0'],
         ]);
 
@@ -112,7 +112,7 @@ class ProductController extends Controller
 
     public function product_tool_store(StoreToolProductRequest $request, Product $product)
     {
-        
+
         DB::transaction(function () use ($request, $product) {
             $validated = $request->validated();
             $validated["product_id"] = $product->id;
@@ -189,12 +189,12 @@ class ProductController extends Controller
     {
         //
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:75'],
             'cover' => ['sometimes', 'image', 'mimes:png,jpg,jpeg'],
             'path_file' => ['sometimes', 'file', 'mimes:zip,pdf'],
             'about' => ['required', 'string', 'max:65535'],
             'category_id' => ['required', 'integer'],
-            'type' => ['required', 'string', 'max:5'],
+            'type' => ['required', 'string', 'max:10'],
             'price' => ['required', 'integer', 'min:0'],
         ]);
 
